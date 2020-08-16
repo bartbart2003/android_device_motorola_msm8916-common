@@ -752,6 +752,13 @@ on charger
     trigger moto-charger
     class_stop main
     class_stop late_start
+    start charger_healthd
+
+service charger_healthd /sbin/healthd -c
+    class core
+    critical
+    group root system wakelock
+    disabled
 
 on moto-charger
     setprop ro.board.platform msm8916
